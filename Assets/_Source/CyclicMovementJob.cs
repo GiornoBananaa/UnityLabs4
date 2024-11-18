@@ -1,24 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Unity.Burst;
+using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.Jobs;
 
-public struct CyclicMovementJob : IJobParallelForTransform
+[BurstCompile]
+public partial struct CyclicMovementJob : IJobEntity
 {
-    public float _speed;
-    public float _deltaTime;
-    public Vector3 _axis;
+    public float DeltaTime;
 
-    public CyclicMovementJob(float speed, float deltaTime, Vector3 axis)
+    public void Execute(ref LocalTransform transform, in TigerRotation tigerRotation)
     {
-        _speed = speed;
-        _deltaTime = deltaTime;
-        _axis = axis;
-    }
-
-    public void Execute(int index, TransformAccess transform)
-    {
-        transform.position = Quaternion.AngleAxis(_deltaTime * _speed, _axis) * transform.position;
+        transform.Position = Quaternion.AngleAxis(DeltaTime * tigerRotation.Speed, tigerRotation.RotationAxis) * transform.Position;
     }
 }
