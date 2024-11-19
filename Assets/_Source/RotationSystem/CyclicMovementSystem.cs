@@ -1,7 +1,6 @@
 ﻿using Unity.Burst;
 using Unity.Entities;
 
-[UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]
 public partial struct CyclicMovementSystem : ISystem
 {
     public void OnCreate(ref SystemState state)

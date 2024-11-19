@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2970282253704820769, guid: a5321b427f944cb4d94d6a41199fc33f, type: 3}
-  _center: {x: 0, y: 0, z: 0}
+  _center: {x: 2.5, y: 0, z: 0}
   _radius: 5
   _spawnCount: 1000
 --- !u!1660057539 &9223372036854775807

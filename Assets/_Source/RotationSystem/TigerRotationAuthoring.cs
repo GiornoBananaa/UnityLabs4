@@ -1,5 +1,4 @@
 ﻿using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class TigerRotationAuthoring : MonoBehaviour
@@ -19,10 +18,4 @@ public class TigerRotationAuthoring : MonoBehaviour
             });
         }
     }
-}
-
-public struct TigerRotation : IComponentData
-{
-    public float Speed;
-    public float3 RotationAxis;
 }
