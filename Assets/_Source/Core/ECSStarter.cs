@@ -1,4 +1,5 @@
 using Leopotam.EcsLite;
+using MovementSystem;
 using UnityEngine;
 using Voody.UniLeo.Lite;
 
@@ -6,16 +7,17 @@ namespace CountingSystem
 {
     public class ECSStarter : MonoBehaviour
     {
-        private EcsWorld _world;
+        private EcsWorld _defaultWorld;
         private EcsSystems _systems;
         
         private void Start() 
         {
-            _world = new EcsWorld();    
-            _systems = new EcsSystems(_world);
-            _systems.ConvertScene()
-                .Add(new CounterSystem())
-                .Init(); 
+            _defaultWorld = new EcsWorld();    
+            _systems = new EcsSystems(_defaultWorld);
+            _systems.ConvertScene();
+            _systems.Add(new CounterSystem());
+            _systems.Add(new SwingMovementSystem());
+            _systems.Init(); 
         }
 
         private void Update()
@@ -26,9 +28,9 @@ namespace CountingSystem
         private void OnDestroy () 
         {
             _systems?.Destroy();
-            _world?.Destroy();
+            _defaultWorld?.Destroy();
             _systems = null;
-            _world = null;
+            _defaultWorld = null;
         }
     }
 }
